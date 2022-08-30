@@ -32,6 +32,10 @@ extension CellController {
 struct Model: Hashable {
     let uuid: UUID
     let height: CGFloat
+    
+    static func createUnique() -> Model {
+        .init(uuid: UUID(), height: .random(in: 50...300))
+    }
 }
 
 class ModelCellController: CellController {
@@ -67,29 +71,10 @@ class LoadingCellController: CellController {
     }
 }
 
-
 class ViewController: UIViewController, UITableViewDelegate {
     @IBOutlet var tableView: UITableView!
-    
-    private var dict = [Model: HashableCellController]()
-    
-    private var models = [Model]() {
-        didSet {
-            var cellController = [HashableCellController]()
-            
-            cellController.append(HashableCellController(hashable: UUID(), cellController: LoadingCellController(load: { [weak self] in self?.loadPrevious()
-            })))
-            
-            cellController.append(contentsOf: models.map {
-                return HashableCellController(hashable: $0, cellController: ModelCellController(model: $0))
-            })
-            
-            cellController.append(HashableCellController(hashable: UUID(), cellController: LoadingCellController(load: { [weak self] in self?.loadNext()
-            })))
-            
-            updateTableView(cellControllers: cellController)
-        }
-    }
+        
+    private var models = [Model]()
     
     private lazy var dataSource: UITableViewDiffableDataSource<Int, HashableCellController> = {
         .init(tableView: tableView) { tableView, indexPath, cellController in
@@ -100,11 +85,28 @@ class ViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
-        models = (1...40).map { _ in Self.createModel() }
+        models = (1...40).map { _ in Model.createUnique() }
+        updateTableView()
         tableView.scrollToRow(at: IndexPath(row: 20, section: 0), at: .middle, animated: false)
     }
     
-    private func updateTableView(cellControllers: [HashableCellController]) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        dataSource.itemIdentifier(for: indexPath)?.cellController.willDisplay()
+    }
+    
+    private func updateTableView() {
+        var cellControllers = [HashableCellController]()
+        
+        cellControllers.append(HashableCellController(hashable: UUID(), cellController: LoadingCellController(load: { [weak self] in self?.loadPrevious()
+        })))
+        
+        cellControllers.append(contentsOf: models.map {
+            return HashableCellController(hashable: $0, cellController: ModelCellController(model: $0))
+        })
+        
+        cellControllers.append(HashableCellController(hashable: UUID(), cellController: LoadingCellController(load: { [weak self] in self?.loadNext()
+        })))
+        
         var snapshot = NSDiffableDataSourceSnapshot<Int, HashableCellController>()
         snapshot.appendSections([0])
         snapshot.appendItems(cellControllers, toSection: 0)
@@ -113,28 +115,18 @@ class ViewController: UIViewController, UITableViewDelegate {
     
     private func loadPrevious() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let models = (1...20).map { _ in Self.createModel() }
+            let models = (1...20).map { _ in Model.createUnique() }
             self.models.insert(contentsOf: models, at: 0)
-            let temp = self.models
-            self.models = temp
+            self.updateTableView()
         }
     }
     
     private func loadNext() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let models = (1...20).map { _ in Self.createModel() }
+            let models = (1...20).map { _ in Model.createUnique() }
             self.models.append(contentsOf: models)
-            let temp = self.models
-            self.models = temp
+            self.updateTableView()
         }
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        dataSource.itemIdentifier(for: indexPath)?.cellController.willDisplay()
-    }
-    
-    private static func createModel() -> Model {
-        Model(uuid: UUID(), height: .random(in: 50...300))
     }
 }
 
