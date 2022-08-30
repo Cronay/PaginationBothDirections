@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE25425E28BE48C500EF1DDE /* CellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25425D28BE48C500EF1DDE /* CellController.swift */; };
+		AE25426028BE48DD00EF1DDE /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25425F28BE48DD00EF1DDE /* Model.swift */; };
+		AE25426228BE48F700EF1DDE /* HashableCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25426128BE48F700EF1DDE /* HashableCellController.swift */; };
+		AE25426428BE490800EF1DDE /* ModelCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25426328BE490800EF1DDE /* ModelCellController.swift */; };
+		AE25426628BE492A00EF1DDE /* LoadingCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25426528BE492A00EF1DDE /* LoadingCellController.swift */; };
 		AEA372DD28B80646005D8611 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA372DC28B80646005D8611 /* LoadingCell.swift */; };
 		AEDF0EB428B7FBE0009C8EAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDF0EB328B7FBE0009C8EAA /* AppDelegate.swift */; };
 		AEDF0EB628B7FBE0009C8EAA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDF0EB528B7FBE0009C8EAA /* SceneDelegate.swift */; };
@@ -17,6 +22,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AE25425D28BE48C500EF1DDE /* CellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellController.swift; sourceTree = "<group>"; };
+		AE25425F28BE48DD00EF1DDE /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		AE25426128BE48F700EF1DDE /* HashableCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashableCellController.swift; sourceTree = "<group>"; };
+		AE25426328BE490800EF1DDE /* ModelCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCellController.swift; sourceTree = "<group>"; };
+		AE25426528BE492A00EF1DDE /* LoadingCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCellController.swift; sourceTree = "<group>"; };
 		AEA372DC28B80646005D8611 /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		AEDF0EB028B7FBE0009C8EAA /* PaginationBothDirection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaginationBothDirection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEDF0EB328B7FBE0009C8EAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,14 +68,19 @@
 		AEDF0EB228B7FBE0009C8EAA /* PaginationBothDirection */ = {
 			isa = PBXGroup;
 			children = (
+				AEDF0EC128B7FBE2009C8EAA /* Info.plist */,
 				AEDF0EB328B7FBE0009C8EAA /* AppDelegate.swift */,
+				AE25425D28BE48C500EF1DDE /* CellController.swift */,
+				AE25426128BE48F700EF1DDE /* HashableCellController.swift */,
+				AEA372DC28B80646005D8611 /* LoadingCell.swift */,
+				AE25426528BE492A00EF1DDE /* LoadingCellController.swift */,
+				AE25425F28BE48DD00EF1DDE /* Model.swift */,
+				AE25426328BE490800EF1DDE /* ModelCellController.swift */,
 				AEDF0EB528B7FBE0009C8EAA /* SceneDelegate.swift */,
 				AEDF0EB728B7FBE0009C8EAA /* ViewController.swift */,
-				AEDF0EB928B7FBE0009C8EAA /* Main.storyboard */,
 				AEDF0EBC28B7FBE2009C8EAA /* Assets.xcassets */,
 				AEDF0EBE28B7FBE2009C8EAA /* LaunchScreen.storyboard */,
-				AEDF0EC128B7FBE2009C8EAA /* Info.plist */,
-				AEA372DC28B80646005D8611 /* LoadingCell.swift */,
+				AEDF0EB928B7FBE0009C8EAA /* Main.storyboard */,
 			);
 			path = PaginationBothDirection;
 			sourceTree = "<group>";
@@ -142,9 +157,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEDF0EB828B7FBE0009C8EAA /* ViewController.swift in Sources */,
+				AE25426428BE490800EF1DDE /* ModelCellController.swift in Sources */,
 				AEDF0EB428B7FBE0009C8EAA /* AppDelegate.swift in Sources */,
 				AEA372DD28B80646005D8611 /* LoadingCell.swift in Sources */,
+				AE25426028BE48DD00EF1DDE /* Model.swift in Sources */,
+				AE25426628BE492A00EF1DDE /* LoadingCellController.swift in Sources */,
 				AEDF0EB628B7FBE0009C8EAA /* SceneDelegate.swift in Sources */,
+				AE25426228BE48F700EF1DDE /* HashableCellController.swift in Sources */,
+				AE25425E28BE48C500EF1DDE /* CellController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
